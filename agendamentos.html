@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento de Serviços - IG Refrigerações</title>
+    <title>Agendamento Automático - IG Refrigerações</title>
     
     <!-- Fonte Google Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,66 +106,49 @@
             color: var(--text-muted);
             font-size: 15px;
             font-weight: 600;
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
-        /* GRID PRINCIPAL (CALENDÁRIO + FORMULÁRIO) */
-        .booking-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        /* CONTAINER PRINCIPAL */
+        .booking-container {
             padding: 40px 8%;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
             flex-grow: 1;
         }
 
         .card-box {
             background: #ffffff;
             border-radius: 16px;
-            padding: 30px;
+            padding: 35px;
             box-shadow: var(--shadow);
             border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
         }
 
-        .card-title {
+        .rule-badge {
+            background: var(--light-blue);
             color: var(--primary-blue);
-            font-size: 20px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 20px;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 10px;
-            border-bottom: 2px solid var(--light-blue);
-            padding-bottom: 10px;
+            border-left: 4px solid var(--accent-blue);
         }
 
-        /* CALENDÁRIO GOOGLE EMBUTIDO */
-        .calendar-container {
-            width: 100%;
-            height: 480px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #cbd5e1;
-        }
-
-        .calendar-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* FORMULÁRIO DE AGENDAMENTO */
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 18px;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
@@ -179,7 +162,7 @@
 
         .form-control {
             width: 100%;
-            padding: 11px 14px;
+            padding: 12px 14px;
             border: 2px solid #cbd5e1;
             border-radius: 8px;
             font-size: 14px;
@@ -198,14 +181,14 @@
             min-height: 80px;
         }
 
-        .btn-submit-booking {
+        .btn-submit-calendar {
             width: 100%;
-            background: #25d366;
+            background: #4285F4;
             color: white;
-            padding: 15px;
+            padding: 16px;
             border-radius: 50px;
             border: none;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -213,15 +196,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+            gap: 12px;
+            box-shadow: 0 6px 18px rgba(66, 133, 244, 0.35);
             transition: background 0.2s, transform 0.2s;
             margin-top: 10px;
         }
 
-        .btn-submit-booking:hover {
-            background: #20ba5a;
+        .btn-submit-calendar:hover {
+            background: #2b6cb0;
             transform: translateY(-2px);
+        }
+
+        /* EMBED DO GOOGLE APPOINTMENTS (OPÇÃO INTEGRADA) */
+        .google-appointments-wrapper {
+            margin-top: 30px;
+            border-top: 2px dashed #cbd5e1;
+            padding-top: 30px;
+        }
+
+        .calendar-embed-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 12px;
         }
 
         /* RODAPÉ */
@@ -269,9 +266,8 @@
             line-height: 1;
         }
 
-        /* RESPONSIVIDADE */
-        @media (max-width: 992px) {
-            .booking-grid { grid-template-columns: 1fr; padding: 30px 5%; }
+        @media (max-width: 768px) {
+            .booking-container { padding: 25px 5%; }
             .form-row { grid-template-columns: 1fr; }
             .nav-bar { justify-content: center; }
             .contact-section { flex-direction: column; align-items: flex-start; }
@@ -300,31 +296,20 @@
 
         <!-- CABEÇALHO -->
         <header class="page-header">
-            <h1>Agendamento de Visita Técnica</h1>
-            <p>Verifique os horários disponíveis no calendário e preencha seus dados para solicitar o agendamento do seu serviço.</p>
+            <h1>Agendamento Direto no Google Calendar</h1>
+            <p>Escolha um horário disponível de Segunda a Sexta (09h às 18h). Ao confirmar, o evento é adicionado diretamente na nossa agenda.</p>
         </header>
 
-        <!-- CONTEÚDO PRINCIPAL -->
-        <main class="booking-grid">
-            
-            <!-- COLUNA DA ESQUERDA: GOOGLE CALENDAR -->
+        <!-- FORMULÁRIO -->
+        <main class="booking-container">
             <div class="card-box">
-                <h2 class="card-title">
-                    <i class="fa-solid fa-calendar-days"></i> Horários Disponíveis
-                </h2>
-                <div class="calendar-container">
-                    <!-- Google Agenda Incorporado (Público) -->
-                    <iframe src="https://calendar.google.com/calendar/embed?src=igr.refrigeracoes%40gmail.com&ctz=America%2FSao_Paulo" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                
+                <div class="rule-badge">
+                    <i class="fa-solid fa-clock-rotate-left"></i> 
+                    Atendimento exclusivo de Segunda a Sexta, das 09:00 às 18:00 (Apenas horários livres).
                 </div>
-            </div>
 
-            <!-- COLUNA DA DIREITA: FORMULÁRIO COMPLETO -->
-            <div class="card-box">
-                <h2 class="card-title">
-                    <i class="fa-solid fa-user-pen"></i> Dados do Agendamento
-                </h2>
-
-                <form id="agendamentoForm">
+                <form id="agendamentoCalendarForm">
                     
                     <div class="form-group">
                         <label for="nome"><i class="fa-solid fa-user"></i> Nome Completo:</label>
@@ -333,7 +318,7 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone / WhatsApp:</label>
+                            <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone de Contato:</label>
                             <input type="tel" id="telefone" class="form-control" placeholder="(11) 99999-9999" required>
                         </div>
                         <div class="form-group">
@@ -343,7 +328,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="endereco"><i class="fa-solid fa-location-dot"></i> Endereço Completo:</label>
+                        <label for="endereco"><i class="fa-solid fa-location-dot"></i> Endereço do Serviço:</label>
                         <input type="text" id="endereco" class="form-control" placeholder="Rua, número, bairro, cidade..." required>
                     </div>
 
@@ -359,27 +344,40 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="dataHora"><i class="fa-solid fa-clock"></i> Data e Horário Pretendido:</label>
+                            <label for="dataHora"><i class="fa-solid fa-calendar-check"></i> Data e Horário:</label>
                             <input type="datetime-local" id="dataHora" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="detalhes"><i class="fa-solid fa-circle-info"></i> Detalhes Adicionais (Opcional):</label>
-                        <textarea id="detalhes" class="form-control" placeholder="Ex: Modelo/BTUs do aparelho, andar, ponto de referência..."></textarea>
+                        <textarea id="detalhes" class="form-control" placeholder="Ex: Modelo/BTUs do aparelho, ponto de referência..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn-submit-booking">
-                        <i class="fa-brands fa-whatsapp"></i> Confirmar Agendamento via WhatsApp
+                    <button type="submit" class="btn-submit-calendar">
+                        <i class="fa-brands fa-google"></i> Adicionar ao Google Agenda
                     </button>
                 </form>
-            </div>
 
+                <!-- EMBED AUTOMÁTICO DO GOOGLE APPOINTMENTS -->
+                <div class="google-appointments-wrapper" id="agendaEmbedSection">
+                    <h3 style="color: var(--primary-blue); font-size: 18px; font-weight: 800; margin-bottom: 15px;">
+                        <i class="fa-solid fa-calendar-days"></i> Horários Livres Atualizados em Tempo Real
+                    </h3>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 15px;">
+                        Você também pode selecionar um bloco de horário vago diretamente na agenda oficial abaixo:
+                    </p>
+                    
+                    <!-- Substitua o atributo SRC abaixo pelo link do seu 'Google Calendar Appointment Schedule' -->
+                    <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0AAAAA?gv=true" class="calendar-embed-frame"></iframe>
+                </div>
+
+            </div>
         </main>
 
         <!-- RODAPÉ DE CONTATO -->
         <footer class="contact-section">
-            <a href="https://wa.me/5511949505074?text=Ol%C3%A1%2C%20gostaria%20de%20confirmar%20um%20agendamento!" target="_blank" class="whatsapp-cta">
+            <a href="https://wa.me/5511949505074" target="_blank" class="whatsapp-cta">
                 <div class="whatsapp-icon">
                     <i class="fa-brands fa-whatsapp"></i>
                 </div>
@@ -389,45 +387,67 @@
                 </div>
             </a>
             <p style="font-weight: 700; color: var(--primary-blue); text-transform: uppercase;">
-                IG Refrigerações - Atendimento com hora marcada
+                IG Refrigerações - Sincronizado com Google Calendar
             </p>
         </footer>
 
     </div>
 
-    <!-- SCRIPT DE PROCESSAMENTO E ENVIO -->
+    <!-- VALIDAÇÃO DE DATA/HORA + GERAÇÃO DO EVENTO DO GOOGLE CALENDAR -->
     <script>
-        document.getElementById('agendamentoForm').addEventListener('submit', function(e) {
+        document.getElementById('agendamentoCalendarForm').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            const dataHoraInput = document.getElementById('dataHora').value;
+            const dataObjeto = new Date(dataHoraInput);
             
+            const diaSemana = dataObjeto.getDay(); // 0 = Domingo, 6 = Sábado
+            const hora = dataObjeto.getHours();
+
+            // Validação 1: Somente dias da semana (Segunda = 1 até Sexta = 5)
+            if (diaSemana === 0 || diaSemana === 6) {
+                alert('Atenção: Os agendamentos são permitidos apenas de Segunda a Sexta-feira.');
+                return;
+            }
+
+            // Validação 2: Horário entre 09h e 18h
+            if (hora < 9 || hora >= 18) {
+                alert('Atenção: Os horários de atendimento são das 09:00 às 18:00.');
+                return;
+            }
+
             const nome = document.getElementById('nome').value;
             const telefone = document.getElementById('telefone').value;
             const email = document.getElementById('email').value;
             const endereco = document.getElementById('endereco').value;
             const servico = document.getElementById('servico').value;
-            
-            // Formatando data e hora legível
-            const rawDataHora = document.getElementById('dataHora').value;
-            const dataObjeto = new Date(rawDataHora);
-            const dataFormatada = dataObjeto.toLocaleDateString('pt-BR');
-            const horaFormatada = dataObjeto.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-
             const detalhes = document.getElementById('detalhes').value;
-            
-            let mensagem = `🗓️ *SOLICITAÇÃO DE AGENDAMENTO*\n\n`;
-            mensagem += `*Nome:* ${nome}\n`;
-            mensagem += `*Telefone:* ${telefone}\n`;
-            mensagem += `*E-mail:* ${email}\n`;
-            mensagem += `*Endereço:* ${endereco}\n`;
-            mensagem += `*Serviço:* ${servico}\n`;
-            mensagem += `*Data/Hora Desejada:* ${dataFormatada} às ${horaFormatada}\n`;
-            
-            if(detalhes.trim() !== '') {
-                mensagem += `*Detalhes:* ${detalhes}\n`;
-            }
 
-            const urlWhatsApp = `https://wa.me/5511949505074?text=${encodeURIComponent(mensagem)}`;
-            window.open(urlWhatsApp, '_blank');
+            // Duração do evento: 1 hora
+            const dataFim = new Date(dataObjeto.getTime() + (60 * 60 * 1000));
+
+            // Formatando datas para o padrão ISO do Google Calendar (YYYYMMDDTHHMMSSZ)
+            const formatarDataGoogle = (date) => date.toISOString().replace(/-|:|\.\d\d\d/g, "");
+
+            const inicioISO = formatarDataGoogle(dataObjeto);
+            const fimISO = formatarDataGoogle(dataFim);
+
+            const tituloEvento = encodeURIComponent(`Atendimento IG Refrigerações: ${servico} - ${nome}`);
+            const descricaoEvento = encodeURIComponent(
+                `Cliente: ${nome}\n` +
+                `Telefone: ${telefone}\n` +
+                `E-mail: ${email}\n` +
+                `Serviço: ${servico}\n` +
+                `Endereço: ${endereco}\n` +
+                `Detalhes: ${detalhes}`
+            );
+            const localizacaoEvento = encodeURIComponent(endereco);
+
+            // Gerando URL direta de criação de evento no Google Calendar do cliente e no da empresa
+            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${tituloEvento}&dates=${inicioISO}/${fimISO}&details=${descricaoEvento}&location=${localizacaoEvento}&add=${encodeURIComponent(email)}`;
+
+            alert('Você será redirecionado para o Google Calendar para salvar o evento diretamente na agenda!');
+            window.open(googleCalendarUrl, '_blank');
         });
     </script>
 
