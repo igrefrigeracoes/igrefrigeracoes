@@ -48,15 +48,13 @@
             justify-content: space-between;
         }
 
-        /* BARRA DE NAVEGAÇÃO / FLUXO */
+        /* BARRA SUPERIOR DE NAVEGAÇÃO */
         .nav-bar {
             background: var(--primary-blue);
             padding: 15px 8%;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
+            justify-content: center;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -65,18 +63,19 @@
 
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .nav-btn {
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 8px;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -88,15 +87,6 @@
         .nav-btn:hover {
             background: var(--accent-blue);
             border-color: var(--accent-blue);
-        }
-
-        .btn-calendar {
-            background: #4285F4;
-            border: none;
-        }
-
-        .btn-calendar:hover {
-            background: #2b6cb0;
         }
 
         /* Header ocupando toda a largura */
@@ -204,7 +194,6 @@
             gap: 25px;
             padding-bottom: 25px;
             border-bottom: 1px dashed #cbd5e1;
-            position: relative;
         }
 
         .service-item:last-child {
@@ -238,27 +227,6 @@
             color: var(--text-muted);
             font-size: 16px;
             font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        /* Botão específico de cada serviço */
-        .btn-service-action {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #eef6fc;
-            color: var(--accent-blue);
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 800;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .btn-service-action:hover {
-            background: var(--accent-blue);
-            color: white;
         }
 
         /* Lado Direito */
@@ -302,7 +270,6 @@
             font-size: 16px;
             color: #e2e8f0;
             line-height: 1.5;
-            margin-bottom: 15px;
         }
 
         .promo-image-box {
@@ -458,7 +425,7 @@
             .features-bar { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .contact-section { flex-direction: column; align-items: flex-start; }
             .footer-message { border-left: none; border-top: 2px solid var(--accent-blue); padding-left: 0; padding-top: 15px; }
-            .nav-links { width: 100%; justify-content: space-between; }
+            .nav-links { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -466,7 +433,7 @@
 
     <div class="page-wrapper">
         
-        <!-- BARRA SUPERIOR DE FLUXO E NAVEGAÇÃO -->
+        <!-- BARRA SUPERIOR DE NAVEGAÇÃO -->
         <nav class="nav-bar">
             <div class="nav-links">
                 <a href="#descricao-servicos" class="nav-btn">
@@ -478,14 +445,7 @@
                 <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" class="nav-btn">
                     <i class="fa-solid fa-calculator"></i> Orçamento
                 </a>
-                <a href="#manutencao-section" class="nav-btn">
-                    <i class="fa-solid fa-wrench"></i> Manutenção (Preventiva / Corretiva)
-                </a>
             </div>
-            
-            <a href="https://calendar.google.com/" target="_blank" class="nav-btn btn-calendar">
-                <i class="fa-brands fa-google"></i> Conectar ao Google Agenda
-            </a>
         </nav>
 
         <!-- Cabeçalho / Marca -->
@@ -515,9 +475,6 @@
                     <div class="service-info">
                         <h3>HIGIENIZAÇÃO</h3>
                         <p>Ar mais limpo, saúde e bem-estar para você e sua família.</p>
-                        <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Quero%20agendar%20uma%20Higieniza%C3%A7%C3%A3o." target="_blank" class="btn-service-action">
-                            <i class="fa-solid fa-calendar-plus"></i> Agendar Higienização
-                        </a>
                     </div>
                 </div>
 
@@ -528,22 +485,16 @@
                     <div class="service-info">
                         <h3>INSTALAÇÕES</h3>
                         <p>Instalação com qualidade e segurança para máximo desempenho.</p>
-                        <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20Instala%C3%A7%C3%A3o." target="_blank" class="btn-service-action">
-                            <i class="fa-solid fa-calculator"></i> Solicitar Orçamento
-                        </a>
                     </div>
                 </div>
 
-                <div class="service-item" id="manutencao-section">
+                <div class="service-item">
                     <div class="service-icon">
                         <i class="fa-solid fa-clipboard-check"></i>
                     </div>
                     <div class="service-info">
                         <h3>MANUTENÇÃO PREVENTIVA</h3>
                         <p>Evita falhas, aumenta a vida útil do equipamento e reduz o consumo de energia.</p>
-                        <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20Manuten%C3%A7%C3%A3o%20Preventiva." target="_blank" class="btn-service-action">
-                            <i class="fa-solid fa-shield-halved"></i> Agendar Preventiva
-                        </a>
                     </div>
                 </div>
 
@@ -554,9 +505,6 @@
                     <div class="service-info">
                         <h3>MANUTENÇÃO CORRETIVA</h3>
                         <p>Diagnóstico preciso e soluções rápidas para o seu equipamento voltar a funcionar perfeitamente.</p>
-                        <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Preciso%20de%20uma%20Manuten%C3%A7%C3%A3o%20Corretiva%20com%20urg%C3%AAncia." target="_blank" class="btn-service-action">
-                            <i class="fa-solid fa-truck-fast"></i> Solicitar Corretiva
-                        </a>
                     </div>
                 </div>
 
@@ -570,9 +518,6 @@
                         <h4>GARANTIA DE QUALIDADE</h4>
                     </div>
                     <p>Atendimento rápido, profissional qualificado e peças de qualidade.</p>
-                    <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Garantia%20de%20Qualidade." target="_blank" class="btn-service-action" style="background: var(--accent-blue); color: white;">
-                        <i class="fa-brands fa-whatsapp"></i> Falar com um Especialista
-                    </a>
                 </div>
 
                 <div class="promo-image-box">
