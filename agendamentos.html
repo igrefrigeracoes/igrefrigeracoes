@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento Automático - IG Refrigerações</title>
-
-    <!-- Ícone que aparecerá na aba do navegador -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png?v=1">
+
     <!-- Fonte Google Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +38,7 @@
             color: var(--text-dark);
             line-height: 1.6;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .page-wrapper {
@@ -48,10 +49,9 @@
             justify-content: space-between;
         }
 
-        /* BARRA SUPERIOR DE NAVEGAÇÃO */
         .nav-bar {
             background: var(--primary-blue);
-            padding: 15px 8%;
+            padding: 12px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -59,11 +59,13 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -71,10 +73,10 @@
         .nav-btn {
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 10px 18px;
+            padding: 10px 16px;
             border-radius: 8px;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -88,17 +90,16 @@
             border-color: var(--accent-blue);
         }
 
-        /* HEADER */
         .page-header {
             background: linear-gradient(180deg, #ffffff 0%, #f4f9fe 100%);
-            padding: 40px 8% 25px;
+            padding: 40px 5% 25px;
             border-bottom: 1px solid #e2e8f0;
             text-align: center;
         }
 
         .page-header h1 {
             color: var(--primary-blue);
-            font-size: 36px;
+            font-size: clamp(26px, 4vw, 36px);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -107,15 +108,14 @@
 
         .page-header p {
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: clamp(13.5px, 1.8vw, 15px);
             font-weight: 600;
             max-width: 750px;
             margin: 0 auto;
         }
 
-        /* CONTAINER PRINCIPAL */
         .booking-container {
-            padding: 40px 5%;
+            padding: 30px 4%;
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
@@ -125,7 +125,7 @@
         .card-box {
             background: #ffffff;
             border-radius: 16px;
-            padding: 35px;
+            padding: clamp(15px, 3vw, 30px);
             box-shadow: var(--shadow);
             border: 1px solid #e2e8f0;
         }
@@ -137,14 +137,13 @@
             border-radius: 8px;
             font-size: 13px;
             font-weight: 700;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
             border-left: 4px solid var(--accent-blue);
         }
 
-        /* EMBED DO GOOGLE APPOINTMENT SCHEDULING */
         .calendar-embed-container {
             position: relative;
             width: 100%;
@@ -157,15 +156,14 @@
 
         .calendar-embed-frame {
             width: 100%;
-            height: 700px;
+            height: clamp(550px, 80vh, 750px);
             border: 0;
             display: block;
         }
 
-        /* RODAPÉ */
         .contact-section {
             background: #ffffff;
-            padding: 30px 8%;
+            padding: 25px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -183,36 +181,36 @@
         }
 
         .whatsapp-icon {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             background: #25d366;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
+            font-size: 32px;
         }
 
         .phone-details .fale-conosco {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 900;
             color: var(--primary-blue);
         }
 
         .phone-details .phone-number {
-            font-size: 32px;
+            font-size: clamp(26px, 4vw, 32px);
             font-weight: 900;
             color: var(--primary-blue);
             line-height: 1;
         }
 
-        @media (max-width: 768px) {
-            .booking-container { padding: 20px 3%; }
-            .card-box { padding: 20px; }
+        @media (max-width: 600px) {
+            .booking-container { padding: 15px 2%; }
             .nav-bar { justify-content: center; }
+            .nav-links { width: 100%; justify-content: center; }
+            .nav-btn { width: 100%; justify-content: center; }
             .contact-section { flex-direction: column; align-items: flex-start; }
-            .calendar-embed-frame { height: 600px; }
         }
     </style>
 </head>
@@ -220,9 +218,8 @@
 
     <div class="page-wrapper">
         
-        <!-- BARRA SUPERIOR DE NAVEGAÇÃO -->
         <nav class="nav-bar">
-            <a href="index.html" class="nav-btn">
+            <a href="./" class="nav-btn">
                 <i class="fa-solid fa-arrow-left"></i> Voltar ao Início
             </a>
 
@@ -236,13 +233,11 @@
             </div>
         </nav>
 
-        <!-- CABEÇALHO -->
         <header class="page-header">
             <h1>Agendamento Online de Serviços</h1>
             <p>Selecione um dia e horário disponível diretamente no sistema oficial da IG Refrigerações abaixo para confirmar sua visita técnica.</p>
         </header>
 
-        <!-- CONTEÚDO PRINCIPAL (AGENDAMENTO INTERATIVO) -->
         <main class="booking-container">
             <div class="card-box">
                 
@@ -252,15 +247,13 @@
                 </div>
 
                 <div class="calendar-embed-container">
-                    <!-- Google Calendar Appointment Scheduling begin -->
+                    <!-- Google Calendar Appointment Scheduling -->
                     <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2lAZLp0LRrO6kkJtNuilakhYsM4wj407JKtWF1LCpEuTb9eXaoepuiaYcquveafbby7grfsYle?gv=true" class="calendar-embed-frame" frameborder="0"></iframe>
-                    <!-- end Google Calendar Appointment Scheduling -->
                 </div>
 
             </div>
         </main>
 
-        <!-- RODAPÉ DE CONTATO -->
         <footer class="contact-section">
             <a href="https://wa.me/5511949505074" target="_blank" class="whatsapp-cta">
                 <div class="whatsapp-icon">
