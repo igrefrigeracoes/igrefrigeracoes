@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Orçamento - IG Refrigerações</title>
+    
+    <!-- Fonte Google Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0b2d64;
+            --accent-blue: #0084c7;
+            --light-blue: #e8f4fc;
+            --text-dark: #1e293b;
+            --text-muted: #475569;
+            --shadow: 0 10px 30px -5px rgba(11, 45, 100, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #f4f8fb;
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* BARRA SUPERIOR DE NAVEGAÇÃO */
+        .nav-bar {
+            background: var(--primary-blue);
+            padding: 15px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        /* HEADER */
+        .page-header {
+            background: linear-gradient(180deg, #ffffff 0%, #f4f9fe 100%);
+            padding: 40px 8% 25px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--primary-blue);
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 600;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* FORMULÁRIO DE ORÇAMENTO */
+        .form-container {
+            padding: 40px 8%;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .budget-form {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-blue);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit-whatsapp {
+            width: 100%;
+            background: #25d366;
+            color: white;
+            padding: 16px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+            transition: background 0.2s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-submit-whatsapp:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+        }
+
+        /* RODAPÉ */
+        .contact-section {
+            background: #ffffff;
+            padding: 30px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .whatsapp-cta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .whatsapp-icon {
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .phone-details .fale-conosco {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--primary-blue);
+        }
+
+        .phone-details .phone-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .form-container { padding: 25px 5%; }
+            .budget-form { padding: 25px; }
+            .nav-bar { justify-content: center; }
+            .contact-section { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        
+        <!-- BARRA SUPERIOR DE NAVEGAÇÃO -->
+        <nav class="nav-bar">
+            <a href="index.html" class="nav-btn">
+                <i class="fa-solid fa-arrow-left"></i> Voltar ao Início
+            </a>
+
+            <div class="nav-links">
+                <a href="descricao-servicos.html" class="nav-btn">
+                    <i class="fa-solid fa-list-check"></i> Descrição de Serviços
+                </a>
+            </div>
+        </nav>
+
+        <!-- CABEÇALHO -->
+        <header class="page-header">
+            <h1>Solicitar Orçamento Rápido</h1>
+            <p>Preencha os campos abaixo com os detalhes do serviço que você precisa e envie diretamente para nosso WhatsApp!</p>
+        </header>
+
+        <!-- FORMULÁRIO -->
+        <main class="form-container">
+            <form class="budget-form" id="orcamentoForm">
+                
+                <div class="form-group">
+                    <label for="nome"><i class="fa-solid fa-user"></i> Seu Nome / Empresa:</label>
+                    <input type="text" id="nome" class="form-control" placeholder="Ex: João Silva" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="servico"><i class="fa-solid fa-screwdriver-wrench"></i> Serviço Desejado:</label>
+                    <select id="servico" class="form-control" required>
+                        <option value="">Selecione o serviço...</option>
+                        <option value="Higienização Completa">Higienização Completa</option>
+                        <option value="Instalação de Ar Condicionado">Instalação de Ar Condicionado</option>
+                        <option value="Manutenção Preventiva">Manutenção Preventiva</option>
+                        <option value="Manutenção Corretiva">Manutenção Corretiva</option>
+                        <option value="Outros / Múltiplos Serviços">Outros / Múltiplos Serviços</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantidade"><i class="fa-solid fa-calculator"></i> Quantidade de Aparelhos:</label>
+                    <input type="number" id="quantidade" class="form-control" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="observacoes"><i class="fa-solid fa-comment-dots"></i> Observações / Detalhes (Opcional):</label>
+                    <textarea id="observacoes" class="form-control" placeholder="Ex: Marca do aparelho, se precisa de escada, bairro/cidade onde será o serviço..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Gerar Orçamento no WhatsApp
+                </button>
+            </form>
+        </main>
+
+        <!-- RODAPÉ DE CONTATO -->
+        <footer class="contact-section">
+            <a href="https://wa.me/5511949505074?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento!" target="_blank" class="whatsapp-cta">
+                <div class="whatsapp-icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div class="phone-details">
+                    <div class="fale-conosco">FALE CONOSCO!</div>
+                    <div class="phone-number">(11) 94950-5074</div>
+                </div>
+            </a>
+            <p style="font-weight: 700; color: var(--primary-blue); text-transform: uppercase;">
+                IG Refrigerações - Resposta Rápida e Garantida
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT DE ENVIO DIRETO PARA O WHATSAPP -->
+    <script>
+        document.getElementById('orcamentoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const servico = document.getElementById('servico').value;
+            const quantidade = document.getElementById('quantidade').value;
+            const observacoes = document.getElementById('observacoes').value;
+            
+            let mensagem = `Olá! Gostaria de um orçamento:\n\n`;
+            mensagem += `*Nome:* ${nome}\n`;
+            mensagem += `*Serviço:* ${servico}\n`;
+            mensagem += `*Qtd. Aparelhos:* ${quantidade}\n`;
+            
+            if(observacoes.trim() !== '') {
+                mensagem += `*Observações:* ${observacoes}\n`;
+            }
+
+            const urlWhatsApp = `https://wa.me/5511949505074?text=${encodeURIComponent(mensagem)}`;
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+
+</body>
+</html>
