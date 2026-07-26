@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Serviços - IG Refrigerações</title>
+    
+    <!-- Fonte Google Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0b2d64;
+            --accent-blue: #0084c7;
+            --light-blue: #e8f4fc;
+            --text-dark: #1e293b;
+            --text-muted: #475569;
+            --shadow: 0 10px 30px -5px rgba(11, 45, 100, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #f4f8fb;
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* BARRA SUPERIOR DE NAVEGAÇÃO */
+        .nav-bar {
+            background: var(--primary-blue);
+            padding: 15px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        /* HEADER */
+        .page-header {
+            background: linear-gradient(180deg, #ffffff 0%, #f4f9fe 100%);
+            padding: 40px 8% 25px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--primary-blue);
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 600;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* GRID PRINCIPAL (CALENDÁRIO + FORMULÁRIO) */
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px 8%;
+            flex-grow: 1;
+        }
+
+        .card-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--light-blue);
+            padding-bottom: 10px;
+        }
+
+        /* CALENDÁRIO GOOGLE EMBUTIDO */
+        .calendar-container {
+            width: 100%;
+            height: 480px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+        }
+
+        .calendar-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* FORMULÁRIO DE AGENDAMENTO */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 11px 14px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-blue);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-submit-booking {
+            width: 100%;
+            background: #25d366;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+            transition: background 0.2s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-submit-booking:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+        }
+
+        /* RODAPÉ */
+        .contact-section {
+            background: #ffffff;
+            padding: 30px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .whatsapp-cta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .whatsapp-icon {
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .phone-details .fale-conosco {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--primary-blue);
+        }
+
+        .phone-details .phone-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 992px) {
+            .booking-grid { grid-template-columns: 1fr; padding: 30px 5%; }
+            .form-row { grid-template-columns: 1fr; }
+            .nav-bar { justify-content: center; }
+            .contact-section { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        
+        <!-- BARRA SUPERIOR DE NAVEGAÇÃO -->
+        <nav class="nav-bar">
+            <a href="index.html" class="nav-btn">
+                <i class="fa-solid fa-arrow-left"></i> Voltar ao Início
+            </a>
+
+            <div class="nav-links">
+                <a href="descricao-servicos.html" class="nav-btn">
+                    <i class="fa-solid fa-list-check"></i> Descrição de Serviços
+                </a>
+                <a href="orcamentos.html" class="nav-btn">
+                    <i class="fa-solid fa-calculator"></i> Orçamento
+                </a>
+            </div>
+        </nav>
+
+        <!-- CABEÇALHO -->
+        <header class="page-header">
+            <h1>Agendamento de Visita Técnica</h1>
+            <p>Verifique os horários disponíveis no calendário e preencha seus dados para solicitar o agendamento do seu serviço.</p>
+        </header>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="booking-grid">
+            
+            <!-- COLUNA DA ESQUERDA: GOOGLE CALENDAR -->
+            <div class="card-box">
+                <h2 class="card-title">
+                    <i class="fa-solid fa-calendar-days"></i> Horários Disponíveis
+                </h2>
+                <div class="calendar-container">
+                    <!-- Google Agenda Incorporado (Público) -->
+                    <iframe src="https://calendar.google.com/calendar/embed?src=pt.brazilian%23holiday%40group.v.calendar.google.com&ctz=America%2FSao_Paulo"></iframe>
+                </div>
+            </div>
+
+            <!-- COLUNA DA DIREITA: FORMULÁRIO COMPLETO -->
+            <div class="card-box">
+                <h2 class="card-title">
+                    <i class="fa-solid fa-user-pen"></i> Dados do Agendamento
+                </h2>
+
+                <form id="agendamentoForm">
+                    
+                    <div class="form-group">
+                        <label for="nome"><i class="fa-solid fa-user"></i> Nome Completo:</label>
+                        <input type="text" id="nome" class="form-control" placeholder="Ex: Maria Oliveira" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone / WhatsApp:</label>
+                            <input type="tel" id="telefone" class="form-control" placeholder="(11) 99999-9999" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="fa-solid fa-envelope"></i> E-mail:</label>
+                            <input type="email" id="email" class="form-control" placeholder="maria@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endereco"><i class="fa-solid fa-location-dot"></i> Endereço Completo:</label>
+                        <input type="text" id="endereco" class="form-control" placeholder="Rua, número, bairro, cidade..." required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="servico"><i class="fa-solid fa-wrench"></i> Tipo de Serviço:</label>
+                            <select id="servico" class="form-control" required>
+                                <option value="">Selecione...</option>
+                                <option value="Higienização Completa">Higienização Completa</option>
+                                <option value="Instalação de Ar Condicionado">Instalação de Ar Condicionado</option>
+                                <option value="Manutenção Preventiva">Manutenção Preventiva</option>
+                                <option value="Manutenção Corretiva">Manutenção Corretiva</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dataHora"><i class="fa-solid fa-clock"></i> Data e Horário Pretendido:</label>
+                            <input type="datetime-local" id="dataHora" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="detalhes"><i class="fa-solid fa-circle-info"></i> Detalhes Adicionais (Opcional):</label>
+                        <textarea id="detalhes" class="form-control" placeholder="Ex: Modelo/BTUs do aparelho, andar, ponto de referência..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit-booking">
+                        <i class="fa-brands fa-whatsapp"></i> Confirmar Agendamento via WhatsApp
+                    </button>
+                </form>
+            </div>
+
+        </main>
+
+        <!-- RODAPÉ DE CONTATO -->
+        <footer class="contact-section">
+            <a href="https://wa.me/5511949505074?text=Ol%C3%A1%2C%20gostaria%20de%20confirmar%20um%20agendamento!" target="_blank" class="whatsapp-cta">
+                <div class="whatsapp-icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div class="phone-details">
+                    <div class="fale-conosco">FALE CONOSCO!</div>
+                    <div class="phone-number">(11) 94950-5074</div>
+                </div>
+            </a>
+            <p style="font-weight: 700; color: var(--primary-blue); text-transform: uppercase;">
+                IG Refrigerações - Atendimento com hora marcada
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT DE PROCESSAMENTO E ENVIO -->
+    <script>
+        document.getElementById('agendamentoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const email = document.getElementById('email').value;
+            const endereco = document.getElementById('endereco').value;
+            const servico = document.getElementById('servico').value;
+            
+            // Formatando data e hora legível
+            const rawDataHora = document.getElementById('dataHora').value;
+            const dataObjeto = new Date(rawDataHora);
+            const dataFormatada = dataObjeto.toLocaleDateString('pt-BR');
+            const horaFormatada = dataObjeto.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+            const detalhes = document.getElementById('detalhes').value;
+            
+            let mensagem = `🗓️ *SOLICITAÇÃO DE AGENDAMENTO*\n\n`;
+            mensagem += `*Nome:* ${nome}\n`;
+            mensagem += `*Telefone:* ${telefone}\n`;
+            mensagem += `*E-mail:* ${email}\n`;
+            mensagem += `*Endereço:* ${endereco}\n`;
+            mensagem += `*Serviço:* ${servico}\n`;
+            mensagem += `*Data/Hora Desejada:* ${dataFormatada} às ${horaFormatada}\n`;
+            
+            if(detalhes.trim() !== '') {
+                mensagem += `*Detalhes:* ${detalhes}\n`;
+            }
+
+            const urlWhatsApp = `https://wa.me/5511949505074?text=${encodeURIComponent(mensagem)}`;
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+
+</body>
+</html>
