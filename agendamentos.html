@@ -141,80 +141,7 @@
             border-left: 4px solid var(--accent-blue);
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--primary-blue);
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 14px;
-            border: 2px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-dark);
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-control:focus {
-            border-color: var(--accent-blue);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .btn-submit-calendar {
-            width: 100%;
-            background: #4285F4;
-            color: white;
-            padding: 16px;
-            border-radius: 50px;
-            border: none;
-            font-size: 16px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            box-shadow: 0 6px 18px rgba(66, 133, 244, 0.35);
-            transition: background 0.2s, transform 0.2s;
-            margin-top: 10px;
-        }
-
-        .btn-submit-calendar:hover {
-            background: #2b6cb0;
-            transform: translateY(-2px);
-        }
-
-        /* EMBED DO GOOGLE CALENDAR OFICIAL */
-        .google-appointments-wrapper {
-            margin-top: 35px;
-            border-top: 2px dashed #cbd5e1;
-            padding-top: 30px;
-            width: 100%;
-        }
-
+        /* EMBED DO GOOGLE APPOINTMENT SCHEDULING */
         .calendar-embed-container {
             position: relative;
             width: 100%;
@@ -227,7 +154,7 @@
 
         .calendar-embed-frame {
             width: 100%;
-            height: 650px;
+            height: 700px;
             border: 0;
             display: block;
         }
@@ -280,10 +207,9 @@
         @media (max-width: 768px) {
             .booking-container { padding: 20px 3%; }
             .card-box { padding: 20px; }
-            .form-row { grid-template-columns: 1fr; }
             .nav-bar { justify-content: center; }
             .contact-section { flex-direction: column; align-items: flex-start; }
-            .calendar-embed-frame { height: 500px; }
+            .calendar-embed-frame { height: 600px; }
         }
     </style>
 </head>
@@ -309,75 +235,23 @@
 
         <!-- CABEÇALHO -->
         <header class="page-header">
-            <h1>Agendamento Direto no Google Calendar</h1>
-            <p>Preencha os dados do atendimento e selecione a data e o horário desejados diretamente na agenda oficial do Google Calendar.</p>
+            <h1>Agendamento Online de Serviços</h1>
+            <p>Selecione um dia e horário disponível diretamente no sistema oficial da IG Refrigerações abaixo para confirmar sua visita técnica.</p>
         </header>
 
-        <!-- FORMULÁRIO -->
+        <!-- CONTEÚDO PRINCIPAL (AGENDAMENTO INTERATIVO) -->
         <main class="booking-container">
             <div class="card-box">
                 
                 <div class="rule-badge">
                     <i class="fa-solid fa-clock-rotate-left"></i> 
-                    Atendimento exclusivo de Segunda a Sexta, das 09:00 às 18:00.
+                    Atendimento exclusivo de Segunda a Sexta, das 09:00 às 18:00 (Somente horários disponíveis).
                 </div>
 
-                <form id="agendamentoCalendarForm">
-                    
-                    <div class="form-group">
-                        <label for="nome"><i class="fa-solid fa-user"></i> Nome Completo:</label>
-                        <input type="text" id="nome" class="form-control" placeholder="Ex: Maria Oliveira" required>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone de Contato:</label>
-                            <input type="tel" id="telefone" class="form-control" placeholder="(11) 99999-9999" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email"><i class="fa-solid fa-envelope"></i> E-mail:</label>
-                            <input type="email" id="email" class="form-control" placeholder="maria@email.com" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="endereco"><i class="fa-solid fa-location-dot"></i> Endereço do Serviço:</label>
-                        <input type="text" id="endereco" class="form-control" placeholder="Rua, número, bairro, cidade..." required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="servico"><i class="fa-solid fa-wrench"></i> Tipo de Serviço:</label>
-                        <select id="servico" class="form-control" required>
-                            <option value="">Selecione...</option>
-                            <option value="Higienização Completa">Higienização Completa</option>
-                            <option value="Instalação de Ar Condicionado">Instalação de Ar Condicionado</option>
-                            <option value="Manutenção Preventiva">Manutenção Preventiva</option>
-                            <option value="Manutenção Corretiva">Manutenção Corretiva</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="detalhes"><i class="fa-solid fa-circle-info"></i> Detalhes Adicionais (Opcional):</label>
-                        <textarea id="detalhes" class="form-control" placeholder="Ex: Modelo/BTUs do aparelho, ponto de referência..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit-calendar">
-                        <i class="fa-brands fa-google"></i> Selecionar Data e Horário no Google Agenda
-                    </button>
-                </form>
-
-                <!-- EMBED AUTOMÁTICO DO GOOGLE CALENDAR COM SUA AGENDA -->
-                <div class="google-appointments-wrapper" id="agendaEmbedSection">
-                    <h3 style="color: var(--primary-blue); font-size: 18px; font-weight: 800; margin-bottom: 10px;">
-                        <i class="fa-solid fa-calendar-days"></i> Horários Livres Atualizados em Tempo Real
-                    </h3>
-                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
-                        Consulte abaixo a disponibilidade da agenda oficial da IG Refrigerações:
-                    </p>
-                    
-                    <div class="calendar-embed-container">
-                        <iframe src="https://calendar.google.com/calendar/embed?src=igr.refrigeracoes%40gmail.com&ctz=America%2FSao_Paulo" class="calendar-embed-frame" frameborder="0" scrolling="no"></iframe>
-                    </div>
+                <div class="calendar-embed-container">
+                    <!-- Google Calendar Appointment Scheduling begin -->
+                    <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2lAZLp0LRrO6kkJtNuilakhYsM4wj407JKtWF1LCpEuTb9eXaoepuiaYcquveafbby7grfsYle?gv=true" class="calendar-embed-frame" frameborder="0"></iframe>
+                    <!-- end Google Calendar Appointment Scheduling -->
                 </div>
 
             </div>
@@ -395,41 +269,11 @@
                 </div>
             </a>
             <p style="font-weight: 700; color: var(--primary-blue); text-transform: uppercase;">
-                IG Refrigerações - Sincronizado com Google Calendar
+                IG Refrigerações - Agendamento Direto em Tempo Real
             </p>
         </footer>
 
     </div>
-
-    <!-- REDIRECIONAMENTO DIRETO PARA O GOOGLE CALENDAR -->
-    <script>
-        document.getElementById('agendamentoCalendarForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const nome = document.getElementById('nome').value;
-            const telefone = document.getElementById('telefone').value;
-            const email = document.getElementById('email').value;
-            const endereco = document.getElementById('endereco').value;
-            const servico = document.getElementById('servico').value;
-            const detalhes = document.getElementById('detalhes').value;
-
-            const tituloEvento = encodeURIComponent(`Atendimento IG Refrigerações: ${servico} - ${nome}`);
-            const descricaoEvento = encodeURIComponent(
-                `Cliente: ${nome}\n` +
-                `Telefone: ${telefone}\n` +
-                `E-mail: ${email}\n` +
-                `Serviço: ${servico}\n` +
-                `Endereço: ${endereco}\n` +
-                `Detalhes: ${detalhes}`
-            );
-            const localizacaoEvento = encodeURIComponent(endereco);
-
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${tituloEvento}&details=${descricaoEvento}&location=${localizacaoEvento}&add=${encodeURIComponent(email)}`;
-
-            alert('Seus dados foram salvos! Escolha a data e o horário desejados diretamente na tela do Google Agenda que será aberta a seguir.');
-            window.open(googleCalendarUrl, '_blank');
-        });
-    </script>
 
 </body>
 </html>
