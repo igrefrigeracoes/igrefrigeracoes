@@ -227,6 +227,27 @@
             color: var(--text-muted);
             font-size: 16px;
             font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        /* Botão Ação do Serviço */
+        .btn-service-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--light-blue);
+            color: var(--accent-blue);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-service-action:hover {
+            background: var(--accent-blue);
+            color: white;
         }
 
         /* Lado Direito */
@@ -436,7 +457,8 @@
         <!-- BARRA SUPERIOR DE NAVEGAÇÃO -->
         <nav class="nav-bar">
             <div class="nav-links">
-                <a href="#descricao-servicos" class="nav-btn">
+                <!-- Apontamento para a página detalhada -->
+                <a href="descricao-servicos.html" class="nav-btn">
                     <i class="fa-solid fa-list-check"></i> Descrição de Serviços
                 </a>
                 <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" class="nav-btn">
@@ -465,7 +487,7 @@
         </header>
 
         <!-- Grid de Serviços -->
-        <main class="content-grid" id="descricao-servicos">
+        <main class="content-grid">
             <div class="services-list">
                 
                 <div class="service-item">
@@ -475,6 +497,9 @@
                     <div class="service-info">
                         <h3>HIGIENIZAÇÃO</h3>
                         <p>Ar mais limpo, saúde e bem-estar para você e sua família.</p>
+                        <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Quero%20agendar%20uma%20Higieniza%C3%A7%C3%A3o." target="_blank" class="btn-service-action">
+                            <i class="fa-brands fa-whatsapp"></i> Agendar Higienização
+                        </a>
                     </div>
                 </div>
 
@@ -485,6 +510,9 @@
                     <div class="service-info">
                         <h3>INSTALAÇÕES</h3>
                         <p>Instalação com qualidade e segurança para máximo desempenho.</p>
+                        <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20Instala%C3%A7%C3%A3o." target="_blank" class="btn-service-action">
+                            <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento
+                        </a>
                     </div>
                 </div>
 
@@ -495,6 +523,9 @@
                     <div class="service-info">
                         <h3>MANUTENÇÃO PREVENTIVA</h3>
                         <p>Evita falhas, aumenta a vida útil do equipamento e reduz o consumo de energia.</p>
+                        <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20Manuten%C3%A7%C3%A3o%20Preventiva." target="_blank" class="btn-service-action">
+                            <i class="fa-brands fa-whatsapp"></i> Agendar Preventiva
+                        </a>
                     </div>
                 </div>
 
@@ -505,6 +536,9 @@
                     <div class="service-info">
                         <h3>MANUTENÇÃO CORRETIVA</h3>
                         <p>Diagnóstico preciso e soluções rápidas para o seu equipamento voltar a funcionar perfeitamente.</p>
+                        <a href="https://wa.me/5511949505074?text=Ol%C3%A1!%20Preciso%20de%20uma%20Manuten%C3%A7%C3%A3o%20Corretiva%20com%20urg%C3%AAncia." target="_blank" class="btn-service-action">
+                            <i class="fa-brands fa-whatsapp"></i> Solicitar Corretiva
+                        </a>
                     </div>
                 </div>
 
